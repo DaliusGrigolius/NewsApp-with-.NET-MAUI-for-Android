@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsApp.Pages.NewsPage"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        
+        <Grid RowDefinitions="Auto,Auto,*">
+
+            <Frame Grid.Row="0" Margin="10" CornerRadius="30" BackgroundColor="AntiqueWhite" HasShadow="True">
+                <Label 
+                       Text="News 24"
+                       FontSize="40"
+                       TextColor="IndianRed"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+            </Frame>
+
+            <CollectionView Grid.Row="1" 
+                            x:Name="CvCategories"
+                            HeightRequest="60"
+                            VerticalOptions="Center"
+                            SelectionMode="Single"
+                            SelectionChanged="CvCategories_SelectionChanged">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Label FontSize="Large"
+                                   TextColor="DarkCyan"
+                                   Text="{Binding Name}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <CollectionView Grid.Row="2" 
+                            x:Name="CvNews"
+                            SelectionMode="Single"
+                            SelectionChanged="CvNews_SelectionChanged">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="15"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Image HeightRequest="200" 
+                                   Source="{Binding Image}"
+                                   Aspect="AspectFill"/>
+                            <Label FontSize="Small" Text="{Binding Title}" FontAttributes="Italic"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+        
+    </ScrollView>
+</ContentPage>
